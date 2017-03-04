@@ -4,6 +4,7 @@ using GameState;
 using Modal;
 using Player.SyncedData;
 using Player.Tracking;
+using UI.Level;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ namespace UI.Lobby {
         public Text startGameButtonText;
 
         private bool allowServerStart = false;
+<<<<<<< Updated upstream
 
         public void Awake()
         {
@@ -39,6 +41,16 @@ namespace UI.Lobby {
                 .Level(State.LEVEL_IN_LOBBY)
                 .Publish();
         }
+||||||| merged common ancestors
+=======
+
+        public void Awake()
+        {
+            State.GetInstance()
+                .Level(State.LEVEL_IN_LOBBY)
+                .Publish();
+        }
+>>>>>>> Stashed changes
         
         public void Start()
         {
@@ -112,7 +124,13 @@ namespace UI.Lobby {
                 "Yes!",
                 "Not yet...",
                 () => {
+<<<<<<< Updated upstream
                     RpcUpdateClientStateOnStart();
+||||||| merged common ancestors
+=======
+                    LevelData.GetInstance().levelTime = (serverTimeSelect.value * 5) + 5;
+                    RpcUpdateClientStateOnStart();
+>>>>>>> Stashed changes
                     NetworkManager.singleton.ServerChangeScene(serverLevelSelect.value == 0 ? "Level A" : "Level B");
                 },
                 () => {
@@ -121,6 +139,7 @@ namespace UI.Lobby {
             );
         }
 
+<<<<<<< Updated upstream
         [ClientRpc]
         private void RpcUpdateClientStateOnStart()
         {
@@ -130,6 +149,17 @@ namespace UI.Lobby {
         }
 
 
+||||||| merged common ancestors
+=======
+        [ClientRpc]
+        private void RpcUpdateClientStateOnStart()
+        {
+            State.GetInstance()
+                .Level(State.LEVEL_NOT_READY)
+                .Publish();
+        }
+
+>>>>>>> Stashed changes
         [ClientCallback]
         private void UpdateClientSettings()
         {

@@ -99,6 +99,7 @@ namespace GameState
                 return false;
             }
 
+<<<<<<< Updated upstream
             if (oldLevel != null && oldLevel != "" && oldLevelState != "" && oldLevel != oldLevelState) {
                 return false;
             }
@@ -122,6 +123,31 @@ namespace GameState
                 return false;
             }
 
+||||||| merged common ancestors
+=======
+            if (oldLevel != null && oldLevel != "" && oldLevelState != "" && oldLevel != oldLevelState) {
+                return false;
+            }
+
+            if (newLevel != null && newLevel != "" && newLevelState != "" && newLevel != newLevelState) {
+                return false;
+            }
+
+            bool anyDirty = false;
+            if (oldNetwork != null && newNetwork != null && oldNetwork != "" && newNetwork != "" && isNetworkDirty) {
+                anyDirty = true;
+            }
+            if (oldGame != null && newGame != null && oldGame != "" && newGame != "" && isGameDirty) {
+                anyDirty = true;
+            }
+            if (((oldLevel != null && oldLevel != "") || (newLevel != null && newLevel != "")) && isLevelDirty) {
+                anyDirty = true;
+            }
+            if (!anyDirty) {
+                return false;
+            }
+
+>>>>>>> Stashed changes
             return true;
         }
     }
